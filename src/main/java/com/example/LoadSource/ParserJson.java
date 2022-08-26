@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ParserJson {
+
     public List<SourceBase> parser(String resault) throws ParseException {
         JSONParser parser =new JSONParser();
         JSONObject mainObject = (JSONObject) parser.parse(resault);
