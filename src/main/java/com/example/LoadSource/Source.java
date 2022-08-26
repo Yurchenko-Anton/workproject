@@ -33,7 +33,6 @@ public class Source implements CommandLineRunner {
     catch (Exception e){
         LocalDate localDate = LocalDate.now();
         data = localDate.toString() + "T00:00:00";
-        System.out.println(data);
     }
         sourceService.parseAndSave(sourceService.getJson(data));
         Logger.getLogger(Source.class.getName()).info("Made by@ Yurchenko Anton");

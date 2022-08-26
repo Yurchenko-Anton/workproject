@@ -7,6 +7,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -24,7 +25,8 @@ import java.util.stream.Collectors;
 @Service
 public class SourceService {
     SourceBaseRepository sourceBaseRepository;
-@Autowired
+    @Value("${url}")
+    private String request;
     public SourceService(SourceBaseRepository sourceBaseRepository) {
         this.sourceBaseRepository = sourceBaseRepository;
     }
@@ -32,8 +34,7 @@ public class SourceService {
     public String getJson(String data) throws IOException {
     LocalDateTime localDateTime = LocalDateTime.now();
     String dateNow = localDateTime.toString().substring(0,localDateTime.toString().lastIndexOf("."));
-    URL url = new URL("https://fmc.kyivstar.ua/api/cdr/v1/callstat.json?token=908************************" +
-            "&names=on&departments=on&ownership=on&direction=on&from=" + data);
+    URL url = new URL(request + data);
     HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
     connection.setRequestMethod("GET");
     connection.setRequestProperty("Content-Type", "charset=utf-8");
