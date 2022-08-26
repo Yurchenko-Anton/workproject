@@ -10,9 +10,11 @@ import java.util.logging.Logger;
 @Component
 public class Source implements CommandLineRunner {
    private  SourceBaseRepository sourceBaseRepository;
+
     public Source(SourceBaseRepository sourceBaseRepository) {
         this.sourceBaseRepository = sourceBaseRepository;
     }
+
     @Value("${my-properties.request}")
     private String request;
 
