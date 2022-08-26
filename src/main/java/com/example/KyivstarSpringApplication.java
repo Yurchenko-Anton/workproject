@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties(RequestProperty.class)
 public class KyivstarSpringApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(KyivstarSpringApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(KyivstarSpringApplication.class, args);
+    }
 }

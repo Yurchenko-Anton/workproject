@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 @Component
 public class Source implements CommandLineRunner {
-   private  SourceBaseRepository sourceBaseRepository;
+    private final SourceBaseRepository sourceBaseRepository;
 
     public Source(SourceBaseRepository sourceBaseRepository) {
         this.sourceBaseRepository = sourceBaseRepository;

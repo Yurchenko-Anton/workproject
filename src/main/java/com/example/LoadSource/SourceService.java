@@ -24,24 +24,25 @@ public class SourceService {
     }
 
     public String httpRequest(String date, String request) throws IOException {
-    URL url = new URL(request + date);
-    HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-    connection.setRequestMethod("GET");
-    InputStream inputStream = connection.getInputStream();
-    return new BufferedReader(new InputStreamReader(inputStream)).lines().collect(Collectors.joining());
-}
-public String getDate(){
-    String date;
-    try {
-        date = sourceBaseRepository.findFirstByOrderByStartTimestampDesc().getStartTimestamp();
-        date = date.replaceAll(" ","T");
+        URL url = new URL(request + date);
+        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        InputStream inputStream = connection.getInputStream();
+        return new BufferedReader(new InputStreamReader(inputStream)).lines().collect(Collectors.joining());
     }
-    catch (Exception e){
-        LocalDate localDate = LocalDate.now();
-        date = localDate + "T00:00:00";
+
+    public String getDate() {
+        String date;
+        try {
+            date = sourceBaseRepository.findFirstByOrderByStartTimestampDesc().getStartTimestamp();
+            date = date.replaceAll(" ", "T");
+        } catch (Exception e) {
+            LocalDate localDate = LocalDate.now();
+            date = localDate + "T00:00:00";
+        }
+        return date;
     }
-    return date;
-}
+
     public void saveData(List<SourceBase> data) {
         sourceBaseRepository.saveAll(data);
     }
